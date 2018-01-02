@@ -16,50 +16,53 @@ function percentFormatter(v) {
   return `${v} %`;
 }
 
-const CustomizedSlider = React.createClass({
-  getInitialState() {
-    return {
-      value: 50,
-    };
-  },
-  onSliderChange(value) {
+class CustomizedSlider extends React.Component {
+  state = {
+    value: 50,
+  };
+
+  onSliderChange = (value) => {
     log(value);
     this.setState({
       value,
     });
-  },
-  onAfterChange(value) {
+  };
+
+  onAfterChange = (value) => {
     console.log(value);
-  },
+  };
+
   render() {
     return (
       <Slider value={this.state.value}
         onChange={this.onSliderChange} onAfterChange={this.onAfterChange}
       />
     );
-  },
-});
+  }
+}
 
-const DynamicBounds = React.createClass({
-  getInitialState() {
-    return {
-      min: 0,
-      max: 100,
-    };
-  },
-  onSliderChange(value) {
+class DynamicBounds extends React.Component {
+  state = {
+    min: 0,
+    max: 100,
+  };
+
+  onSliderChange = (value) => {
     log(value);
-  },
-  onMinChange(e) {
+  };
+
+  onMinChange = (e) => {
     this.setState({
       min: +e.target.value || 0,
     });
-  },
-  onMaxChange(e) {
+  };
+
+  onMaxChange = (e) => {
     this.setState({
       max: +e.target.value || 100,
     });
-  },
+  };
+
   render() {
     return (
       <div>
@@ -74,8 +77,8 @@ const DynamicBounds = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(
   <div>
