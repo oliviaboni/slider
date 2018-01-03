@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>v-range.js - example - rc-slider@5.3.5</title>
+  <title>v-range.js - example - @oliviaboni/rc-slider@6.0.3</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -257,20 +257,20 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
   }
   </script>
-  <link rel="stylesheet" href="common.css" />
+  
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <h1>rc-slider@5.3.5</h1>
+      <h1>@oliviaboni/rc-slider@6.0.3</h1>
 
       <p>slider ui component for react</p>
     </div>
     <div class="example" id="__react-content"></div>
 
     <div class="highlight"><pre><code language="js"><span class="hljs-comment">/* eslint react/no-multi-comp: 0 */</span>
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-slider/assets/index.css'</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-slider/assets/index.less'</span>);
 
 <span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
 <span class="hljs-keyword">const</span> ReactDOM = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react-dom'</span>);
@@ -283,30 +283,33 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   <span class="hljs-built_in">console</span>.log(value);
 }
 
-<span class="hljs-keyword">const</span> CustomizedRange = React.createClass({
-  getInitialState() {
-    <span class="hljs-keyword">return</span> {
-      lowerBound: <span class="hljs-number">20</span>,
-      upperBound: <span class="hljs-number">40</span>,
-      value: [<span class="hljs-number">20</span>, <span class="hljs-number">40</span>],
-    };
-  },
-  onLowerBoundChange(e) {
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomizedRange</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = {
+    lowerBound: <span class="hljs-number">20</span>,
+    upperBound: <span class="hljs-number">40</span>,
+    value: [<span class="hljs-number">20</span>, <span class="hljs-number">40</span>],
+  };
+
+  onLowerBoundChange = (e) =&gt; {
     <span class="hljs-keyword">this</span>.setState({ lowerBound: +e.target.value });
-  },
-  onUpperBoundChange(e) {
+  };
+
+  onUpperBoundChange = (e) =&gt; {
     <span class="hljs-keyword">this</span>.setState({ upperBound: +e.target.value });
-  },
-  onSliderChange(value) {
+  };
+
+  onSliderChange = (value) =&gt; {
     log(value);
     <span class="hljs-keyword">this</span>.setState({
       value,
     });
-  },
-  handleApply() {
+  };
+
+  handleApply = () =&gt; {
     <span class="hljs-keyword">const</span> { lowerBound, upperBound } = <span class="hljs-keyword">this</span>.state;
     <span class="hljs-keyword">this</span>.setState({ value: [lowerBound, upperBound] });
-  },
+  };
+
   render() {
     <span class="hljs-keyword">return</span> (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span>&gt;</span>
@@ -322,29 +325,31 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
         <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.handleApply}</span>&gt;</span>Apply<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     )</span>;
-  },
-});
+  }
+}
 
-<span class="hljs-keyword">const</span> DynamicBounds = React.createClass({
-  getInitialState() {
-    <span class="hljs-keyword">return</span> {
-      min: <span class="hljs-number">0</span>,
-      max: <span class="hljs-number">100</span>,
-    };
-  },
-  onSliderChange(value) {
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DynamicBounds</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = {
+    min: <span class="hljs-number">0</span>,
+    max: <span class="hljs-number">100</span>,
+  };
+
+  onSliderChange = (value) =&gt; {
     log(value);
-  },
-  onMinChange(e) {
+  };
+
+  onMinChange = (e) =&gt; {
     <span class="hljs-keyword">this</span>.setState({
       min: +e.target.value || <span class="hljs-number">0</span>,
     });
-  },
-  onMaxChange(e) {
+  };
+
+  onMaxChange = (e) =&gt; {
     <span class="hljs-keyword">this</span>.setState({
       max: +e.target.value || <span class="hljs-number">100</span>,
     });
-  },
+  };
+
   render() {
     <span class="hljs-keyword">return</span> (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span>&gt;</span>
@@ -358,8 +363,8 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
         <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"number"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">{this.state.max}</span> <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{this.onMaxChange}</span> /&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     )</span>;
-  },
-});
+  }
+}
 
 ReactDOM.render(
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{parentStyle}</span>&gt;</span>
@@ -398,7 +403,7 @@ ReactDOM.render(
          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
   </a>
   <script>FastClick.attach(document.body);</script>
-  <script src="common.js?nowrap"></script>
+  <script src="../common.js?nowrap"></script>
   <script src="v-range.js?nowrap"></script>
 </body>
 
